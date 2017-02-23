@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Eclipse Phase</title>
+    <style type="text/css">
+        .sheet-form-group {
+            margin-bottom: 15px;
+        }
+
+        .sheet-form-control:focus {
+            border-color: #66afe9;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+        }
+
+        .sheet-form-control {
+            display: block;
+            width: 100%;
+            height: 34px;
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #555;
+            background-color: #fff;
+            background-image: none;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+            -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+
+        input, select, textarea {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .sheet-col-md-1, .sheet-col-md-2, .sheet-col-md-3, .sheet-col-md-4, .sheet-col-md-5, .sheet-col-md-6, .sheet-col-md-7, .sheet-col-md-8, .sheet-col-md-9, .sheet-col-md-10, .sheet-col-md-11, .sheet-col-md-12 {
+            float: left;
+            position: relative;
+            min-height: 1px;
+            /*padding-right: 15px;*/
+            /*padding-left: 15px;*/
+        }
+
+        .sheet-col-md-12 {
+            width: 100%;
+        }
+
+        .sheet-col-md-11 {
+            width: 91.66666667%;
+        }
+
+        .sheet-col-md-10 {
+            width: 83.33333333%;
+        }
+
+        .sheet-col-md-9 {
+            width: 75%;
+        }
+
+        .sheet-col-md-8 {
+            width: 66.66666667%;
+        }
+
+        .sheet-col-md-7 {
+            width: 58.33333333%;
+        }
+
+        .sheet-col-md-6 {
+            width: 50%;
+        }
+
+        .sheet-col-md-5 {
+            width: 41.66666667%;
+        }
+
+        .sheet-col-md-4 {
+            width: 33.33333333%;
+        }
+
+        .sheet-col-md-3 {
+            width: 25%;
+        }
+
+        .sheet-col-md-2 {
+            width: 16.66666667%;
+        }
+
+        .sheet-col-md-1 {
+            width: 8.33333333%;
+        }
+
+        .sheet-text-center {
+            text-align: center;
+        }
+
+        .sheet-tab-content {
+            display: none;
+            margin-top: 20px;
+        }
+
+        input.sheet-tab-dossier:checked ~ .sheet-tab-dossier,
+        input.sheet-tab-ego:checked ~ .sheet-tab-ego,
+        input.sheet-tab-morph:checked ~ .sheet-tab-morph,
+        input.sheet-tab-skills:checked ~ .sheet-tab-skills,
+        input.sheet-tab-muse:checked ~ .sheet-tab-muse,
+        input.sheet-tab-equipment:checked ~ .sheet-tab-equipment {
+            display: block;
+        }
+
+        input.sheet-tab-dossier:checked::before,
+        input.sheet-tab-ego:checked::before,
+        input.sheet-tab-morph:checked::before,
+        input.sheet-tab-skills:checked::before,
+        input.sheet-tab-muse:checked::before,
+        input.sheet-tab-equipment:checked::before {
+            background: darkred;
+            color: white;
+        }
+
+        input.sheet-tab {
+            height: 10px;
+            outline: none !important;
+            position: relative;
+            cursor: pointer;
+            z-index: 1;
+            margin: 0px;
+        }
+
+        input.sheet-tab::before {
+            content: attr(title);
+            display: inline-block;
+
+            background: #fff;
+            border: solid 1px #a8a8a8;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+
+            font-size: 14px;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+            height: 20px;
+        }
+        .sheet-pull-right {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<input type="radio" name="attr_tab" class="sheet-tab sheet-tab-dossier sheet-col-md-2 sheet-form-control" value="1"
+       title="Dossier"
+       checked="checked"/>
+<input type="radio" name="attr_tab" class="sheet-tab sheet-tab-ego sheet-col-md-2 sheet-form-control" value="2"
+       title="Ego"/>
+<input type="radio" name="attr_tab" class="sheet-tab sheet-tab-morph sheet-col-md-2 sheet-form-control" value="3"
+       title="Morph"/>
+<input type="radio" name="attr_tab" class="sheet-tab sheet-tab-skills sheet-col-md-2 sheet-form-control" value="4"
+       title="Skills"/>
+<input type="radio" name="attr_tab" class="sheet-tab sheet-tab-muse sheet-col-md-2 sheet-form-control" value="5"
+       title="Muse"/>
+<input type="radio" name="attr_tab" class="sheet-tab sheet-tab-equipment sheet-col-md-2 sheet-form-control" value="6"
+       title="Equipment"/>
+
+<div style="clear: both"></div>
+<!--Character overview-->
+<div class="sheet-tab-content sheet-tab-ego">
+    <div>
+        <div class="sheet-col-md-3 sheet-form-group">
+            <label>Name</label>
+            <input type="text" name="attr_name" class="sheet-form-control"/>
+        </div>
+        <div class="sheet-col-md-3 sheet-form-group">
+            <label>Background</label>
+            <select class="sheet-form-control" name="attr_background">
+                <option></option>
+                <option value="Drifter">Drifter</option>
+                <option value="Fall evacuee">Fall evacuee</option>
+                <option value="Hyperelite">Hyperelite</option>
+                <option value="Infolife">Infolife</option>
+                <option value="Isolate">Isolate</option>
+                <option value="Lost">Lost</option>
+                <option value="Lunar colonist">Lunar colonist</option>
+                <option value="Martian">Martian</option>
+                <option value="Original space colonist">Original space colonist</option>
+                <option value="Re-instaniated">Re-instaniated</option>
+                <option value="Scumborn">Scumborn</option>
+                <option value="Uplift">Uplift</option>
+            </select>
+        </div>
+        <div class="sheet-col-md-3 sheet-form-group">
+            <label>Faction</label>
+            <select class="sheet-form-control" name="attr_faction">
+                <option></option>
+                <option value="Anarchist">Anarchist</option>
+                <option value="Argonaut">Argonaut</option>
+                <option value="Barsoomian">Barsoomian</option>
+                <option value="Brinker">Brinker</option>
+                <option value="Criminal">Criminal</option>
+                <option value="Extropian">Extropian</option>
+                <option value="Hypercorp">Hypercorp</option>
+                <option value="Jovian">Jovian</option>
+                <option value="Lunar">Lunar</option>
+                <option value="Mercurial">Mercurial</option>
+                <option value="Scum">Scum</option>
+                <option value="Socialite">Socialite</option>
+                <option value="Titanian">Titanian</option>
+                <option value="Ultimate">Ultimate</option>
+                <option value="Venusian">Venusian</option>
+            </select>
+        </div>
+        <div class="sheet-col-md-3 sheet-form-group">
+            <label>Morph</label>
+            <select class="sheet-form-control" name="attr_active_morph"></select>
+        </div>
+        <div class="sheet-col-md-3 sheet-form-group">
+            <label>Gender Id.</label>
+            <input type="text" name="attr_gender" class="sheet-form-control"/>
+        </div>
+        <div class="sheet-col-md-3 sheet-form-group">
+            <label>Actual age</label>
+            <input type="text" name="attr_age" class="sheet-form-control"/>
+        </div>
+        <div class="sheet-col-md-3 sheet-form-group">
+            <label>Current Moxie</label>
+            <input type="text" name="attr_moxie" class="sheet-form-control"/>
+        </div>
+        <div class="sheet-col-md-3 sheet-form-group">
+            <label>Rez points</label>
+            <input type="text" name="attr_rez_points" class="sheet-form-control"/>
+        </div>
+    </div>
+</div>
+
+<div class="sheet-tab-content sheet-tab-ego">
+    <table class="sheet-col-md-5">
+        <tr>
+            <td></td>
+            <th>COG</th>
+            <th>COO</th>
+            <th>INT</th>
+            <th>REF</th>
+            <th>SAV</th>
+            <th>SOM</th>
+            <th>WIL</th>
+        </tr>
+        <tr>
+            <th>Base</th>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_base_cog" value="15">
+            </td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_base_coo" value="15">
+            </td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_base_int" value="15">
+            </td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_base_ref" value="15">
+            </td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_base_sav" value="15">
+            </td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_base_som" value="15">
+            </td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_base_wil" value="15">
+            </td>
+        </tr>
+        <tr>
+            <th>Morph</th>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_morph_cog"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_morph_coo"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_morph_int"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_morph_ref"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_morph_sav"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_morph_som"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_morph_wil"></td>
+        </tr>
+        <tr>
+            <th>Total</th>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_total_cog"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_total_coo"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_total_int"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_total_ref"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_total_sav"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_total_som"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_total_wil"></td>
+        </tr>
+        <tr>
+            <th>Max</th>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_max_cog" value="30"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_max_coo" value="30"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_max_int" value="30"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_max_ref" value="30"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_max_sav" value="30"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_max_som" value="30"></td>
+            <td><input type="text" class="sheet-form-control sheet-text-center" name="attr_max_wil" value="30"></td>
+        </tr>
+    </table>
+    <table class="sheet-col-md-5 sheet-pull-right">
+        <tr>
+            <td></td>
+            <th>Primary</th>
+            <th>Secondary</th>
+            <th>Tertiary</th>
+            <th>Quaternary</th>
+        </tr>
+        <tr>
+            <th>@-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_@_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_@_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_@_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_@_rep"></td>
+        </tr>
+        <tr>
+            <th>C-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_C_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_C_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_C_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_C_rep"></td>
+        </tr>
+        <tr>
+            <th>E-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_E_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_E_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_E_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_E_rep"></td>
+        </tr>
+        <tr>
+            <th>F-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_F_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_F_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_F_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_F_rep"></td>
+        </tr>
+        <tr>
+            <th>G-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_G_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_G_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_G_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_G_rep"></td>
+        </tr>
+        <tr>
+            <th>I-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_I_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_I_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_I_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_I_rep"></td>
+        </tr>
+        <tr>
+            <th>R-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_R_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_R_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_R_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_R_rep"></td>
+        </tr>
+        <tr>
+            <th>X-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_X_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_X_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_X_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_X_rep"></td>
+        </tr>
+        <tr>
+            <th>U-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_U_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_U_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_U_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_U_rep"></td>
+        </tr>
+        <tr>
+            <th>R-Rep</th>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_primary_R_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_secondary_R_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_tertiary_R_rep"></td>
+            <td><input type="text" class="sheet-form-control" name="attr_identity_quaternary_R_rep"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
